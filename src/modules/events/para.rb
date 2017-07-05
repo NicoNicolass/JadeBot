@@ -2,13 +2,12 @@ module Bot
   module DiscordEvents
     module Para
       extend Discordrb::EventContainer
-      message(from: "Nicolass" ,in:"#bottest", content:"para") do |event|
+      message(from: "Nicolass", content:"para") do |event|
         channel = event.user.voice_channel
-        server = event.user.server.id
         BOT.voice_connect(channel)
-        sleep(0.5)
+        sleep(0.2)
         event.voice.play_file("data/para.mp3")
-        BOT.voice_destroy(server)
+        BOT.voice_destroy(channel.server.id)
       end
     end
   end
